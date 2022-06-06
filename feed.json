@@ -27,15 +27,15 @@
             "id": "https://dilsayar.github.io/my-second-post/",
             "url": "https://dilsayar.github.io/my-second-post/",
             "title": "Hi!",
-            "summary": "This is Hüseyin speaking! I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. I have had experience with JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python.",
-            "content_html": "<p>This is Hüseyin speaking!</p>\n<p>I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. </p>\n<p>I have had experience with <em>JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python</em>.</p>",
+            "summary": "This is Hüseyin speaking! ☕ I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. I have had experience with JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python.",
+            "content_html": "<p>This is Hüseyin speaking! ☕</p>\n<p>I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. </p>\n<p>I have had experience with <em>JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python</em>.</p>",
             "author": {
                 "name": "Hüseyin Demirtaş"
             },
             "tags": [
             ],
             "date_published": "2022-06-06T13:45:30+03:00",
-            "date_modified": "2022-06-06T15:17:38+03:00"
+            "date_modified": "2022-06-06T15:23:19+03:00"
         },
         {
             "id": "https://dilsayar.github.io/about/",

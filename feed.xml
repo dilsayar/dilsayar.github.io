@@ -3,7 +3,7 @@
     <title>Hüseyin Demirtaş</title>
     <link href="https://dilsayar.github.io/feed.xml" rel="self" />
     <link href="https://dilsayar.github.io" />
-    <updated>2022-06-06T15:17:38+03:00</updated>
+    <updated>2022-06-06T15:23:19+03:00</updated>
     <author>
         <name>Hüseyin Demirtaş</name>
     </author>
@@ -38,15 +38,15 @@
         <link href="https://dilsayar.github.io/my-second-post/"/>
         <id>https://dilsayar.github.io/my-second-post/</id>
 
-        <updated>2022-06-06T15:17:38+03:00</updated>
+        <updated>2022-06-06T15:23:19+03:00</updated>
             <summary>
                 <![CDATA[
-                    This is Hüseyin speaking! I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. I have had experience with JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python.
+                    This is Hüseyin speaking! ☕ I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. I have had experience with JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python.
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>This is Hüseyin speaking!</p>
+                <p>This is Hüseyin speaking! ☕</p>
 <p>I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. </p>
 <p>I have had experience with <em>JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python</em>.</p>
             ]]>
