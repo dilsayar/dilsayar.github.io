@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://dilsayar.github.io/sitemap.xml
