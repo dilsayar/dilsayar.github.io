@@ -1,18 +1,236 @@
-<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hüseyin Demirtaş</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="./"><link rel="stylesheet" href="./assets/css/style.css?v=bbbc568a964662c0051a145ca1c4064a"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"Hüseyin Demirtaş","url":"./","sameAs":["https://twitter.com/dilsayar"]}</script></head><body><div class="site-container"><header class="top" id="js-header"><a class="logo" href="./">Hüseyin Demirtaş</a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li class="active"><a href="./" target="_self">Home</a></li><li><a href="./projects/" target="_self">Projects</a></li><li><a href="./about/" target="_self">About</a></li></ul></nav></header><main><div class="hero"><header class="hero__content"><div class="wrapper"><h1>#developer #learner</h1><p>I will be sharing my thoughts and experiments here.</p></div></header></div><div class="feed"><article class="feed__item"><header class="wrapper"><div class="feed__meta"><time datetime="2022-06-06T13:45" class="feed__date">June 6, 2022</time></div><h2><a href="./my-second-post/">Hi!</a></h2></header><div class="wrapper"><p>This is Hüseyin speaking! ☕ I am an indie developer from İstanbul, Turkey. I am interested in learning about and experimenting with new technologies. I have had experience with JavaScript, HTML, CSS, NodeJS, PHP, VB, and Python.</p></div></article></div></main><footer class="footer"><div class="footer__social"><a href="https://twitter.com/dilsayar" aria-label="Twitter"><svg><use xlink:href="./assets/svg/svg-map.svg#twitter"/></svg></a></div><div class="footer__copyright"><p>Powered by tea &amp; patience</p></div><button onclick="backToTopFunction()" id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg><use xlink:href="./assets/svg/svg-map.svg#toparrow"/></svg></button></footer></div><script>window.publiiThemeMenuConfig = {    
-        mobileMenuMode: 'sidebar',
-        animationSpeed: 300,
-        submenuWidth: 'auto',
-        doubleClickTime: 500,
-        mobileMenuExpandableSubmenus: true, 
-        relatedContainerForOverlayMenuSelector: '.top',
-   };</script><script defer="defer" src="./assets/js/scripts.min.js?v=6ca8b60e6534a3888de1205e82df8528"></script><script>var images = document.querySelectorAll('img[loading]');
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>GitHub Pages & Tailwind CSS Example</title>
+    <link href="#" rel="stylesheet" />
+  </head>
+  <body class="m-10 leading-loose text-l bg-blue-100 text-slate-800 space-y-2">
+    <header class="text-gray-600 body-font">
+      <div
+        class="
+          container
+          mx-auto
+          flex flex-wrap
+          p-5
+          flex-col
+          md:flex-row
+          items-center
+        "
+      >
+        <a
+          class="
+            flex
+            title-font
+            font-medium
+            items-center
+            text-gray-900
+            mb-4
+            md:mb-0
+          "
+        >
+          <span class="text-xl">Dilsayar</span>
+        </a>
+        <nav
+          class="
+            md:ml-auto md:mr-auto
+            flex flex-wrap
+            items-center
+            text-base
+            justify-left
+            hover:bg-yellow-300
+            hover:text-gray-900
+            pl-3
+            pr-3 pt-1 pb-1    
+          "
+        >
+       
+          <a
+            href="https://huseyindemirtas.net/"
+            class="hover:cursor-pointer"
+            >Blog</a
+          >
+        </nav> 
 
-        for (var i = 0; i < images.length; i++) {
-            if (images[i].complete) {
-                images[i].classList.add('is-loaded');
-            } else {
-                images[i].addEventListener('load', function () {
-                    this.classList.add('is-loaded');
-                }, false);
-            }
-        }</script></body></html>
+        <a href="https://github.com/dilsayar">
+        <button
+          class="
+            inline-flex
+            items-center
+            bg-gray-100
+            border-0
+            py-1
+            px-3
+            focus:outline-none
+            hover:bg-yellow-300
+            hover:text-gray-900
+            rounded
+            text-base
+            mt-4
+            md:mt-0
+          "
+        >GitHub
+       
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="w-4 h-4 ml-1"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </a>
+      </div>
+    </header>
+
+    <div class="columns-1 gap-2">
+     
+     <div class="w-full border-double border-1 outline outline-offset-1 p-5">
+
+      <h1 class="font-bold text-xl">This is Hüseyin speaking! ☕ </h1>
+
+      <p>
+    I am an indie developer from İstanbul,
+        Turkey. I am interested in learning about and experimenting with new
+        technologies. I have had experience with JavaScript, HTML, CSS, NodeJS,
+        PHP, VB, and Python.
+      </p>
+    </div>
+    <div class="m-6"></div>
+
+      <div class="w-full border-double border-1 outline outline-offset-1 p-5">
+   
+        <h2 class="text-xl italic font-bold">Tailwind CSS Example</h2>
+        <p>
+          This is a basic example to showcase the use of TailWind CSS library. I am using VS Code and Mac terminal to try out this basic example with
+          some basic HTML. The goal is to publish this page using GitHub Pages. 
+        </p>
+        <p class="text-right">Tools used: <span class="overline">Digital Ocean App Platform, GitHub CodeSpaces, StackBlitz, Tailwind CSSS</span> </p>
+      </div>
+      <div class="m-6"></div>
+      <div class="w-full border-double border-2 outline outline-offset-1 p-3">
+        <h2  class="text-xl italic font-bold">Next Project</h2>
+        <p class="">Loading...</p>
+       </p>
+      </div>
+
+      
+
+    <footer class="text-gray-600 body-font">
+      <div
+        class="
+          container
+          px-5
+          py-8
+          mx-auto
+          flex
+          items-center
+          sm:flex-row
+          flex-col
+        "
+      >
+        <a
+          class="
+            flex
+            title-font
+            font-medium
+            items-center
+            md:justify-start
+            justify-center
+            text-gray-900
+          "
+        >
+          <span class="ml-3 text-xl">Dilsayar </span
+          ><span class="italic text-sm p-2 hover:text-rose-400">by Hüseyin Demirtaş</span>
+        </a>
+        <p
+          class="
+            text-sm text-gray-500
+            sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0
+            mt-4
+          "
+        ></p>
+        <span
+          class="
+            inline-flex
+            sm:ml-auto sm:mt-0
+            mt-4
+            justify-center
+            sm:justify-start
+          "
+        >
+          <a
+            class="ml-3 text-gray-500"
+            href="https://twitter.com/dilsayar"
+            target="_blank"
+          >
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <a
+            class="ml-3 text-gray-500"
+            href="https://www.linkedin.com/in/huseyindemirtas/"
+            target="_blank"
+          >
+            <svg
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="0"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="none"
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+              ></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+
+
+
+
+          <a
+          class="ml-3 text-gray-500"
+          href="https://www.youtube.com/channel/UCR2SgFrRdoRrOxCAG-AYuxA"
+          target="_blank"
+        >
+          
+        
+        <svg  height="36" width="36" viewBox="-35.20005 -41.33325 305.0671 247.9995">
+          <path d="M229.763 25.817c-2.699-10.162-10.65-18.165-20.747-20.881C190.716 0 117.333 0 117.333 0S43.951 0 25.651 4.936C15.554 7.652 7.602 15.655 4.904 25.817 0 44.237 0 82.667 0 82.667s0 38.43 4.904 56.85c2.698 10.162 10.65 18.164 20.747 20.881 18.3 4.935 91.682 4.935 91.682 4.935s73.383 0 91.683-4.935c10.097-2.717 18.048-10.72 20.747-20.88 4.904-18.422 4.904-56.851 4.904-56.851s0-38.43-4.904-56.85" fill="currentColor"/>
+          <path d="M93.333 117.558l61.334-34.89-61.334-34.893z" fill="#fff"/>
+        
+        
+        </svg>
+
+        </a>
+
+     
+
+
+
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
