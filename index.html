@@ -2,360 +2,525 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Hüseyin Demirtaş @ Dilsayar</title>
+    <meta
+      name="description"
+      content="Hüseyin Demirtaş — indie developer from Istanbul building things for the web and beyond."
+    />
+    <meta name="theme-color" content="#07070d" />
+    <meta property="og:title" content="Hüseyin Demirtaş @ Dilsayar" />
+    <meta
+      property="og:description"
+      content="Indie developer from Istanbul. Building things for the web and beyond."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
-            },
-          },
-        },
-      };
-    </script>
     <style>
+      :root {
+        --bg: #07070d;
+        --surface: rgba(255, 255, 255, 0.04);
+        --surface-hover: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.09);
+        --text: #f1f1f6;
+        --muted: #9a9bb0;
+        --accent: #8b7cff;
+        --accent-2: #3dd6f5;
+        --accent-3: #ff6fb5;
+        --radius: 20px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
 
-      .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      svg { display: block; flex-shrink: 0; }
+
+      .container {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ---------- Background ---------- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.45;
+        animation: drift 22s ease-in-out infinite alternate;
+      }
+      .blob.b1 { width: 520px; height: 520px; background: var(--accent); top: -160px; left: -120px; }
+      .blob.b2 { width: 460px; height: 460px; background: var(--accent-2); top: 25%; right: -160px; opacity: 0.28; animation-delay: -7s; }
+      .blob.b3 { width: 420px; height: 420px; background: var(--accent-3); bottom: -160px; left: 25%; opacity: 0.22; animation-delay: -13s; }
+      .grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, #000 20%, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, #000 20%, transparent 75%);
+        opacity: 0.5;
+      }
+      @keyframes drift {
+        from { transform: translate(0, 0) scale(1); }
+        to { transform: translate(60px, 40px) scale(1.15); }
+      }
+
+      /* ---------- Nav ---------- */
+      nav {
+        position: fixed;
+        top: 14px;
+        left: 0;
+        right: 0;
+        z-index: 50;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+        padding: 0 8px 0 20px;
+        background: rgba(12, 12, 20, 0.6);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+      }
+      .logo { font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+      .logo-dot {
+        width: 10px; height: 10px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 14px var(--accent);
+      }
+      .nav-links { display: flex; align-items: center; gap: 6px; }
+      .nav-links a.link {
+        font-size: 14px; font-weight: 500; color: var(--muted);
+        padding: 8px 14px; border-radius: 999px; transition: color .2s, background .2s;
+      }
+      .nav-links a.link:hover { color: var(--text); background: var(--surface-hover); }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        font-weight: 600; font-size: 15px;
+        padding: 14px 24px; border-radius: 14px;
+        border: 1px solid var(--border);
+        transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+        cursor: pointer;
+      }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #5b8bff);
+        border-color: transparent;
+        box-shadow: 0 10px 30px -8px rgba(139, 124, 255, 0.7);
+      }
+      .btn-primary:hover { box-shadow: 0 14px 38px -8px rgba(139, 124, 255, 0.9); }
+      .btn-ghost { background: var(--surface); }
+      .btn-ghost:hover { background: var(--surface-hover); border-color: rgba(255,255,255,.2); }
+      .btn-sm { padding: 9px 16px; font-size: 14px; border-radius: 999px; background: var(--text); color: #0a0a12; border: 0; }
+      .btn-sm:hover { background: #fff; }
+      .btn svg { transition: transform .2s; }
+      .btn:hover .arrow { transform: translateX(4px); }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        padding: 130px 0 70px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .badge {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-size: 13px; font-weight: 500; color: var(--muted);
+        padding: 7px 14px; border-radius: 999px;
+        background: var(--surface); border: 1px solid var(--border);
+        margin-bottom: 26px;
+      }
+      .pulse {
+        width: 8px; height: 8px; border-radius: 50%; background: #3ddc97;
+        box-shadow: 0 0 0 0 rgba(61, 220, 151, .6);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        70% { box-shadow: 0 0 0 9px rgba(61, 220, 151, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(61, 220, 151, 0); }
+      }
+      h1 {
+        font-size: clamp(2.6rem, 7vw, 5rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+        font-weight: 800;
+        margin-bottom: 24px;
+      }
+      .grad {
+        background: linear-gradient(110deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
-        background-clip: text;
+        animation: shine 6s linear infinite;
+      }
+      @keyframes shine { to { background-position: 200% center; } }
+      .lead { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); max-width: 540px; margin-bottom: 36px; }
+      .cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+      /* Terminal card */
+      .terminal {
+        background: rgba(14, 14, 24, 0.75);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(139,124,255,.08);
+        overflow: hidden;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 14px;
+        transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
+        transition: transform .5s ease;
+      }
+      .terminal:hover { transform: perspective(1200px) rotateY(0) rotateX(0); }
+      .term-bar { display: flex; align-items: center; gap: 7px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+      .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; }
+      .term-bar i:nth-child(2) { background: #febc2e; }
+      .term-bar i:nth-child(3) { background: #28c840; }
+      .term-bar span { margin-left: 10px; font-size: 12px; color: var(--muted); }
+      .term-body { padding: 20px; line-height: 1.9; overflow-x: auto; }
+      .term-body .p { color: var(--accent-2); }
+      .term-body .k { color: var(--accent-3); }
+      .term-body .s { color: #3ddc97; }
+      .term-body .m { color: var(--muted); }
+      .cursor {
+        display: inline-block; width: 8px; height: 16px; background: var(--text);
+        vertical-align: middle; margin-left: 3px; animation: blink 1s steps(1) infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+
+      /* ---------- Sections ---------- */
+      section { padding: 90px 0; }
+      .eyebrow {
+        font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--accent); margin-bottom: 14px;
+      }
+      h2 {
+        font-size: clamp(1.9rem, 4.5vw, 3rem);
+        letter-spacing: -0.03em; line-height: 1.12; font-weight: 800;
+        margin-bottom: 14px;
+      }
+      .section-head { margin-bottom: 48px; max-width: 620px; }
+      .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+      /* Stack */
+      .stack { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+      .tech {
+        display: flex; flex-direction: column; align-items: center; gap: 12px;
+        padding: 26px 12px;
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: 18px; font-weight: 600; font-size: 15px;
+        transition: transform .25s, background .25s, border-color .25s;
+      }
+      .tech:hover { transform: translateY(-5px); background: var(--surface-hover); border-color: var(--c); }
+      .tech-ico {
+        width: 46px; height: 46px; border-radius: 13px;
+        display: grid; place-items: center;
+        font-family: "JetBrains Mono", monospace; font-size: 15px; font-weight: 500;
+        color: var(--c);
+        background: color-mix(in srgb, var(--c) 14%, transparent);
+        border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
       }
 
-      .glass {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+      /* Projects */
+      .projects { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+      .card {
+        position: relative;
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 34px;
+        transition: transform .3s, border-color .3s, background .3s;
+        overflow: hidden;
       }
+      .card::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(139,124,255,.16), transparent 45%);
+        opacity: 0; transition: opacity .3s; pointer-events: none;
+      }
+      .card:hover { transform: translateY(-4px); border-color: rgba(139,124,255,.4); background: var(--surface-hover); }
+      .card:hover::before { opacity: 1; }
+      .card > * { position: relative; }
+      .card-ico {
+        width: 52px; height: 52px; border-radius: 15px; margin-bottom: 24px;
+        display: grid; place-items: center; color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 10px 26px -8px rgba(139,124,255,.7);
+      }
+      .card h3 { font-size: 1.4rem; letter-spacing: -0.02em; margin-bottom: 10px; }
+      .card p { color: var(--muted); margin-bottom: 24px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tag {
+        font-size: 12.5px; font-weight: 500; color: var(--muted);
+        padding: 5px 12px; border-radius: 999px;
+        background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      }
+      .card.soon {
+        border-style: dashed; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center; min-height: 260px;
+      }
+      .card.soon .card-ico { background: var(--surface-hover); box-shadow: none; color: var(--muted); }
+      .card.soon h3 { color: var(--muted); }
+      .card.soon p { margin: 0; }
 
-      .card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* CTA band */
+      .band {
+        text-align: center; padding: 64px 28px;
+        border-radius: 28px; border: 1px solid var(--border);
+        background:
+          radial-gradient(600px circle at 20% 0%, rgba(139,124,255,.22), transparent 60%),
+          radial-gradient(600px circle at 90% 100%, rgba(61,214,245,.16), transparent 60%),
+          var(--surface);
       }
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-      }
+      .band p { color: var(--muted); max-width: 480px; margin: 0 auto 30px; }
+      .band .cta { justify-content: center; }
 
-      .hero-gradient {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 50%, #ddd6f3 100%);
+      /* Footer */
+      footer { border-top: 1px solid var(--border); padding: 34px 0; margin-top: 50px; }
+      .foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+      .foot small { color: var(--muted); font-size: 14px; }
+      .socials { display: flex; gap: 10px; }
+      .socials a {
+        width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+        color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+        transition: color .2s, transform .2s, background .2s;
       }
+      .socials a:hover { color: var(--text); background: var(--surface-hover); transform: translateY(-3px); }
 
-      .social-icon {
-        transition: color 0.2s ease, transform 0.2s ease;
-      }
-      .social-icon:hover {
-        transform: scale(1.15);
-      }
+      /* Reveal on scroll */
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+      .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
 
-      .fade-in {
-        animation: fadeInUp 0.6s ease-out both;
+      /* ---------- Responsive ---------- */
+      @media (max-width: 920px) {
+        .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+        .terminal { transform: none; }
+        .projects { grid-template-columns: 1fr; }
+        .stack { grid-template-columns: repeat(3, 1fr); }
       }
-      .fade-in-delay-1 { animation-delay: 0.1s; }
-      .fade-in-delay-2 { animation-delay: 0.2s; }
-      .fade-in-delay-3 { animation-delay: 0.3s; }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      @media (max-width: 560px) {
+        section { padding: 64px 0; }
+        .hero { padding-top: 110px; }
+        .nav-links a.link { display: none; }
+        .btn { width: 100%; }
+        .cta { flex-direction: column; }
+        .btn-sm { width: auto; }
+        .stack { grid-template-columns: repeat(2, 1fr); }
+        .card { padding: 26px; }
+        .foot { flex-direction: column; text-align: center; }
+        .term-body { font-size: 12.5px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+        .reveal { opacity: 1; transform: none; }
+        html { scroll-behavior: auto; }
       }
     </style>
   </head>
 
-  <body class="font-sans antialiased text-gray-800 bg-gray-50">
-    <!-- Navigation -->
-    <nav class="glass fixed top-0 left-0 right-0 z-50">
-      <div
-        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
-      >
-        <a href="#" class="text-xl font-bold tracking-tight text-gray-900">
-          Dilsayar
-        </a>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <div class="grid-overlay"></div>
+    </div>
 
-        <div class="flex items-center gap-3 sm:gap-6">
-          <a
-            href="https://huseyindemirtas.net/"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >Blog</a
-          >
-          <a
-            href="https://github.com/dilsayar"
-            target="_blank"
-            class="inline-flex items-center gap-2 bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
-          >
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-              />
-            </svg>
-            GitHub
-          </a>
+    <nav>
+      <div class="container">
+        <div class="nav-inner">
+          <a href="#" class="logo"><span class="logo-dot"></span>Dilsayar</a>
+          <div class="nav-links">
+            <a class="link" href="#stack">Stack</a>
+            <a class="link" href="#projects">Projects</a>
+            <a class="link" href="https://huseyindemirtas.net/">Blog</a>
+            <a class="btn btn-sm" href="https://github.com/dilsayar" target="_blank" rel="noopener">GitHub</a>
+          </div>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-[85vh] flex items-center pt-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-        <div class="max-w-3xl fade-in">
-          <p
-            class="text-sm font-semibold uppercase tracking-widest text-indigo-500 mb-4"
-          >
-            Indie Developer &middot; Istanbul, Turkey
-          </p>
-          <h1
-            class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6"
-          >
-            Hi, I'm
-            <span class="gradient-text">Hüseyin</span>
-            <span class="inline-block ml-2">&#9749;</span>
-          </h1>
-          <p
-            class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl mb-10"
-          >
-            I am an indie developer from Istanbul, Turkey. I am interested in
-            learning about and experimenting with new technologies. I love
-            building things for the web and beyond.
-          </p>
-
-          <!-- Tech Stack Pills -->
-          <div class="flex flex-wrap gap-2 sm:gap-3 mb-10">
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-yellow-100 text-yellow-800"
-              >JavaScript</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-orange-100 text-orange-800"
-              >HTML</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-blue-100 text-blue-800"
-              >CSS</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-green-100 text-green-800"
-              >Node.js</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-purple-100 text-purple-800"
-              >PHP</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-indigo-100 text-indigo-800"
-              >VB</span
-            >
-            <span
-              class="px-4 py-1.5 text-sm font-medium rounded-full bg-sky-100 text-sky-800"
-              >Python</span
-            >
-          </div>
-
-          <div class="flex flex-wrap gap-4">
-            <a
-              href="https://github.com/dilsayar"
-              target="_blank"
-              class="inline-flex items-center gap-2 bg-gray-900 text-white font-semibold px-6 py-3 rounded-xl hover:bg-gray-700 transition-colors shadow-lg shadow-gray-900/20"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-              View My Projects
-            </a>
-            <a
-              href="https://huseyindemirtas.net/"
-              class="inline-flex items-center gap-2 bg-white text-gray-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors border border-gray-200 shadow-sm"
-            >
-              Read My Blog
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="py-20 sm:py-28 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 fade-in">
-          <p
-            class="text-sm font-semibold uppercase tracking-widest text-indigo-500 mb-3"
-          >
-            What I'm Working On
-          </p>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
-            Projects & Experiments
-          </h2>
-        </div>
-
-        <div class="grid gap-8 md:grid-cols-2">
-          <!-- Card 1: Tailwind CSS Example -->
-          <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm fade-in fade-in-delay-1"
-          >
-            <div
-              class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-6 h-6 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Tailwind CSS Showcase</h3>
-            <p class="text-gray-600 leading-relaxed mb-6">
-              A basic example to showcase the use of the Tailwind CSS library.
-              Built with VS Code and published via GitHub Pages for quick
-              iteration and live preview.
+    <main>
+      <!-- Hero -->
+      <header class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="badge reveal"><span class="pulse"></span>Indie developer · Istanbul, Turkey</div>
+            <h1 class="reveal d1">Hi, I'm <span class="grad">Hüseyin</span> ☕</h1>
+            <p class="lead reveal d2">
+              I'm an indie developer who loves learning and experimenting with new
+              technologies — building things for the web and beyond.
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="text-xs font-medium px-3 py-1 rounded-full bg-gray-100 text-gray-600"
-                >DigitalOcean</span
-              >
-              <span
-                class="text-xs font-medium px-3 py-1 rounded-full bg-gray-100 text-gray-600"
-                >GitHub Codespaces</span
-              >
-              <span
-                class="text-xs font-medium px-3 py-1 rounded-full bg-gray-100 text-gray-600"
-                >StackBlitz</span
-              >
-              <span
-                class="text-xs font-medium px-3 py-1 rounded-full bg-gray-100 text-gray-600"
-                >Tailwind CSS</span
-              >
+            <div class="cta reveal d3">
+              <a class="btn btn-primary" href="https://github.com/dilsayar" target="_blank" rel="noopener">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                View my projects
+              </a>
+              <a class="btn btn-ghost" href="https://huseyindemirtas.net/">
+                Read my blog
+                <svg class="arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
             </div>
           </div>
 
-          <!-- Card 2: Next Project -->
-          <div
-            class="card-hover bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-dashed border-gray-300 flex flex-col items-center justify-center text-center fade-in fade-in-delay-2"
-          >
-            <div
-              class="w-12 h-12 rounded-xl bg-gray-200 flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-6 h-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
+          <div class="terminal reveal d2" aria-hidden="true">
+            <div class="term-bar"><i></i><i></i><i></i><span>hüseyin@istanbul ~</span></div>
+            <div class="term-body">
+              <div><span class="p">$</span> whoami</div>
+              <div class="m">indie developer</div>
+              <div><span class="p">$</span> cat stack.json</div>
+              <div>{</div>
+              <div>&nbsp;&nbsp;<span class="k">"languages"</span>: [<span class="s">"JS"</span>, <span class="s">"Python"</span>, <span class="s">"PHP"</span>, <span class="s">"VB"</span>],</div>
+              <div>&nbsp;&nbsp;<span class="k">"runtime"</span>: <span class="s">"Node.js"</span>,</div>
+              <div>&nbsp;&nbsp;<span class="k">"fuel"</span>: <span class="s">"coffee"</span></div>
+              <div>}</div>
+              <div><span class="p">$</span> <span class="cursor"></span></div>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-gray-500">Next Project</h3>
-            <p class="text-gray-400">Something exciting is coming soon...</p>
           </div>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400">
-      <div
-        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6"
-      >
-        <div class="text-center sm:text-left">
-          <span class="text-white font-bold text-lg">Dilsayar</span>
-          <span class="text-gray-500 text-sm ml-2">by Hüseyin Demirtaş</span>
+      <!-- Stack -->
+      <section id="stack">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Toolbox</p>
+            <h2>What I build with</h2>
+            <p>A mix of battle-tested tools and whatever I'm currently curious about.</p>
+          </div>
+          <div class="stack">
+            <div class="tech reveal" style="--c:#f7df1e"><div class="tech-ico">JS</div>JavaScript</div>
+            <div class="tech reveal d1" style="--c:#ff7a3d"><div class="tech-ico">&lt;/&gt;</div>HTML</div>
+            <div class="tech reveal d2" style="--c:#38a3ff"><div class="tech-ico">{ }</div>CSS</div>
+            <div class="tech reveal d1" style="--c:#4ade80"><div class="tech-ico">N</div>Node.js</div>
+            <div class="tech reveal d2" style="--c:#a78bfa"><div class="tech-ico">php</div>PHP</div>
+            <div class="tech reveal d3" style="--c:#3dd6f5"><div class="tech-ico">Py</div>Python</div>
+          </div>
         </div>
+      </section>
 
-        <div class="flex items-center gap-5">
-          <!-- Twitter / X -->
-          <a
-            href="https://twitter.com/dilsayar"
-            target="_blank"
-            class="social-icon text-gray-400 hover:text-white"
-            aria-label="Twitter"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-              />
-            </svg>
+      <!-- Projects -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">What I'm working on</p>
+            <h2>Projects &amp; experiments</h2>
+            <p>Small things, shipped quickly, and iterated in the open.</p>
+          </div>
+          <div class="projects">
+            <article class="card reveal">
+              <div class="card-ico">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              </div>
+              <h3>Tailwind CSS Showcase</h3>
+              <p>
+                A basic example showcasing the Tailwind CSS library. Built with
+                VS Code and published via GitHub Pages for quick iteration and
+                live preview.
+              </p>
+              <div class="tags">
+                <span class="tag">DigitalOcean</span>
+                <span class="tag">GitHub Codespaces</span>
+                <span class="tag">StackBlitz</span>
+                <span class="tag">Tailwind CSS</span>
+              </div>
+            </article>
+
+            <article class="card soon reveal d1">
+              <div class="card-ico">
+                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              </div>
+              <h3>Next project</h3>
+              <p>Something exciting is coming soon…</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section>
+        <div class="container">
+          <div class="band reveal">
+            <h2>Let's build something.</h2>
+            <p>Follow along on GitHub, or read what I'm learning on the blog.</p>
+            <div class="cta">
+              <a class="btn btn-primary" href="https://github.com/dilsayar" target="_blank" rel="noopener">Follow on GitHub</a>
+              <a class="btn btn-ghost" href="https://huseyindemirtas.net/">Visit the blog</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container foot">
+        <small><strong style="color:var(--text)">Dilsayar</strong> · by Hüseyin Demirtaş</small>
+        <div class="socials">
+          <a href="https://twitter.com/dilsayar" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
           </a>
-
-          <!-- LinkedIn -->
-          <a
-            href="https://www.linkedin.com/in/huseyindemirtas/"
-            target="_blank"
-            class="social-icon text-gray-400 hover:text-white"
-            aria-label="LinkedIn"
-          >
-            <svg
-              class="w-5 h-5"
-              fill="currentColor"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="none"
-                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-              />
-              <circle cx="4" cy="4" r="2" stroke="none" />
-            </svg>
+          <a href="https://www.linkedin.com/in/huseyindemirtas/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-
-          <!-- YouTube -->
-          <a
-            href="https://www.youtube.com/channel/UCR2SgFrRdoRrOxCAG-AYuxA"
-            target="_blank"
-            class="social-icon text-gray-400 hover:text-white"
-            aria-label="YouTube"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-              />
-            </svg>
+          <a href="https://www.youtube.com/channel/UCR2SgFrRdoRrOxCAG-AYuxA" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
         </div>
       </div>
     </footer>
+
+    <script>
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Cursor-following glow on cards
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("pointermove", (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty("--mx", e.clientX - r.left + "px");
+          card.style.setProperty("--my", e.clientY - r.top + "px");
+        });
+      });
+    </script>
   </body>
 </html>
